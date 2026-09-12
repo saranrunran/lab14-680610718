@@ -16,7 +16,7 @@ function loadCards(): Registrant[] {
 const defaultCards: Registrant[] = [];
 
 export default function DashboardPage() {
-  const [cards, setCards] = useState<Registrant[]>(loadCards);
+  const [cards] = useState<Registrant[]>(loadCards);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(cards));
