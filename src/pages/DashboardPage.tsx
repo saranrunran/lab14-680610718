@@ -1,8 +1,10 @@
 import UserRegisterCard from "../components/UserRegisterCard";
 import type { Registrant } from "../libs/Registrant";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const STORAGE_KEY = "lab14.cards";
+
+const defaultCards: Registrant[] = [];
 
 function loadCards(): Registrant[] {
   try {
@@ -13,20 +15,15 @@ function loadCards(): Registrant[] {
   }
 }
 
-const defaultCards: Registrant[] = [];
-
 export default function DashboardPage() {
   const [cards] = useState<Registrant[]>(loadCards);
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(cards));
-  }, [cards]);
-
   return (
     <div className="container mt-4">
-      <h2>Dashboard</h2>
-      {/* Conditional Rendering + Render Component */}
-      {cards.length === 0 ? <p className="text-muted">ยังไม่มีผู้ลงทะเบียน</p> : (
+      <h2 className="fw-bold mb-3">Dashboard</h2>
+      {cards.length === 0 ? (
+        <p className="text-muted">ยังไม่มีผู้ลงทะเบียน</p>
+      ) : (
         <>
           <p className="text-muted mb-2">
             ผู้ลงทะเบียนแล้ว ({cards.length} คน)

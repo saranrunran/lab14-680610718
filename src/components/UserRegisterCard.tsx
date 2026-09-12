@@ -14,6 +14,7 @@ const extraNames: Record<string, string> = {
 };
 
 export default function UserRegisterCard({
+  id: _id,
   fullName,
   gender, 
   plan,
