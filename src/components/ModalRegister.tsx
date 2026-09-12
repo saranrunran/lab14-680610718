@@ -223,10 +223,19 @@ export default function ModalRegister({ onClose }: { onClose: () => void }) {
 
           <div className="modal-footer">
             <div>
-              <input className="me-2 form-check-input" type="checkbox" />I agree
-              to the terms and conditions
+              <input 
+                type="checkbox"
+                checked={agree}
+                onChange={(e) => setAgree(e.target.checked)}
+              />
+              I agree to the terms and conditions
             </div>
-            <button className="btn btn-success my-2">Register</button>
+            <button 
+              className="btn btn-success my-2"
+              onClick={registerBtnOnClick}
+              disabled={!agree}>
+              Register
+            </button>
           </div>
         </div>
       </div>
