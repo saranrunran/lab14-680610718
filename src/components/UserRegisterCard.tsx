@@ -21,21 +21,20 @@ export default function UserRegisterCard({
   extra,
   total
 }: Registrant) {
-
   const genderText = gender === "male" ? "👨 Male" : "👩 Female";
 
   return (
     <div className="card p-3 my-3 shadow-sm d-flex flex-row justify-content-between align-items-start">
       <div>
-        <p className="fw-bold fs-5">{fullName}</p>
+        <p className="fw-bold fs-5 mb-1">{fullName}</p>
         <p className="text-muted small mb-2">{planNames[plan] || plan} · {genderText}</p>
         <div className="d-flex flex-wrap gap-1">
           {extra &&
             extra.map((itemId) => (
-            <span key={itemId} className="badge bg-light text-dark border fw-normal">
-              {extraNames[itemId] || itemId}
-            </span>
-          ))}
+              <span key={itemId} className="badge bg-light text-dark border fw-normal">
+                {extraNames[itemId] || itemId}
+              </span>
+            ))}
         </div>
       </div>
       <div className="fw-bold">
