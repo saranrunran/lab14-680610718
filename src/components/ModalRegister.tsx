@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 type RegisterForm = {
   fname: string;
@@ -71,10 +72,26 @@ export default function ModalRegister({ onClose }: { onClose: () => void }) {
     if (hasError) return;
 
     const total = computeTotalPayment();
+
+    const rawCards = localStorage.getItem("lab14.cards");
+    const prevCards = rawCards ? JSON.parse(rawCards) : [];
+
+    const newCard = {
+      id: uuidv4(),
+      fullName: `${form.fname} ${form.lname}`,
+      gender: form.gender,
+      plan: form.plan,
+      extra: form.extra,
+      total: total,
+    };
+
+    localStorage.setItem("lab14.cards", JSON.stringify([...prevCards, newCard]));
     // to แจ้งขึ้น
     alert(
       `Registration complete. Please pay money for ${total.toLocaleString()} THB.`,
     );
+
+    onClose();
   };
 
   return (
